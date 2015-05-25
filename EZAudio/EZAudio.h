@@ -201,6 +201,25 @@
    rightMax:(float)rightMax;
 
 /**
+ Maps a value from one coordinate system into another one. Takes in the current value to map, the minimum and maximum values of the first coordinate system, and the minimum and maximum values of the second coordinate system and calculates the mapped value in the second coordinate system's constraints.
+ @param 	value 	The value expressed in the first coordinate system
+ @param 	leftMin 	The minimum of the first coordinate system
+ @param 	leftMax 	The maximum of the first coordinate system
+ @param     leftScale   The scale of the first coordinate system
+ @param 	rightMin 	The minimum of the second coordindate system
+ @param 	rightMax 	The maximum of the second coordinate system
+ @param 	rightScale 	    The scale of the second coordinate system
+ @return	The mapped value in terms of the second coordinate system
+ */
++(float)MAP:(float)value
+    leftMin:(float)leftMin
+    leftMax:(float)leftMax
+  leftScale:(float)leftScale
+   rightMin:(float)rightMin
+   rightMax:(float)rightMax
+ rightScale:(float)rightScale;
+
+/**
  Calculates the root mean squared for a buffer.
  @param 	buffer 	A float buffer array of values whose root mean squared to calculate
  @param 	bufferSize 	The size of the float buffer

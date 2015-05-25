@@ -95,6 +95,21 @@ typedef struct {
 @property (nonatomic,assign,setter=setGain:) float gain;
 
 /**
+ The plot's time interval. If this value is different that zero the timeInterval should map to the width of the frame
+ */
+@property (nonatomic,assign,setter=setTimeInterval:) NSTimeInterval timeInterval;
+
+/**
+ The plot's edge inset percentage left.  This value will offset the start of the sound wave. Only applies if timeInterval is set.
+ */
+@property (nonatomic,assign,setter=setEdgeInsetPercentageLeft:) CGFloat edgeInsetPercentageLeft;
+
+/**
+ The plot's edge inset percentage right.  This value will offset the start of the sound wave. Only applies if timeInterval is set.
+ */
+@property (nonatomic,assign,setter=setEdgeInsetPercentageRight:) CGFloat edgeInsetPercentageRight;
+
+/**
  The type of plot as specified by the `EZPlotType` enumeration (i.e. a buffer or rolling plot type).
  */
 @property (nonatomic,assign,setter=setPlotType:) EZPlotType plotType;
@@ -163,13 +178,16 @@ typedef struct {
  @param buffer      The float array holding the audio data
  @param bufferSize  The size of the float array holding the audio data
  @param gain        The gain (always greater than 0.0) to apply to the amplitudes (y-values) of the graph. Y-values can only range from -1.0 to 1.0 so any value that's greater will be rounded to -1.0 or 1.0.
+ @param leftOffset  The offset from the left when rolling
  */
 +(void)fillGraph:(EZAudioPlotGLPoint*)graph
    withGraphSize:(UInt32)graphSize
   forDrawingType:(EZAudioPlotGLDrawType)drawingType
       withBuffer:(float*)buffer
   withBufferSize:(UInt32)bufferSize
-        withGain:(float)gain;
+        withGain:(float)gain
+  withLeftOffset:(float)leftOffset
+       withScale:(float)scale;
 
 /**
  Determines the proper size of a graph given a EZAudioPlotGLDrawType (line strip or triangle strip) and the size of the incoming buffer. Triangle strips require interpolating between points so the buffer becomes 2*bufferSize

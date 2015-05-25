@@ -71,6 +71,21 @@
 @property (nonatomic,assign,setter=setGain:) float gain;
 
 /**
+ The plot's time interval. If this value is different that zero the timeInterval should map to the width of the frame
+ */
+@property (nonatomic,assign,setter=setTimeInterval:) NSTimeInterval timeInterval;
+
+/**
+ The plot's edge inset percentage left.  This value will offset the start of the sound wave. Only applies if timeInterval is set.
+ */
+@property (nonatomic,assign,setter=setEdgeInsetPercentageLeft:) CGFloat edgeInsetPercentageLeft;
+
+/**
+ The plot's edge inset percentage right.  This value will offset the start of the sound wave. Only applies if timeInterval is set.
+ */
+@property (nonatomic,assign,setter=setEdgeInsetPercentageRight:) CGFloat edgeInsetPercentageRight;
+
+/**
  The type of plot as specified by the `EZPlotType` enumeration (i.e. a buffer or rolling plot type).
  */
 @property (nonatomic,assign,setter=setPlotType:) EZPlotType plotType;

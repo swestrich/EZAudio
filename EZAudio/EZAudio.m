@@ -292,6 +292,19 @@
     return rightMin + (valueScaled * rightSpan);
 }
 
++(float)MAP:(float)value
+    leftMin:(float)leftMin
+    leftMax:(float)leftMax
+  leftScale:(float)leftScale
+   rightMin:(float)rightMin
+   rightMax:(float)rightMax
+ rightScale:(float)rightScale {
+    float leftSpan    = (leftMax  - leftMin) * leftScale;
+    float rightSpan   = (rightMax - rightMin) * rightScale;
+    float valueScaled = ( value  - leftMin ) / leftSpan;
+    return rightMin + (valueScaled * rightSpan);
+}
+
 +(float)RMS:(float *)buffer
      length:(int)bufferSize {
     float sum = 0.0;

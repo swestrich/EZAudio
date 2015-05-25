@@ -207,7 +207,9 @@
               forDrawingType:_drawingType
                   withBuffer:_scrollHistory
               withBufferSize:_scrollHistoryLength
-                    withGain:self.gain];
+                    withGain:self.gain
+              withLeftOffset:0.0f
+                   withScale:1.0f];
     // Update the drawing
     glBufferSubData(GL_ARRAY_BUFFER, 0, sizeof(graph), graph);
   }
@@ -266,7 +268,9 @@
              forDrawingType:_drawingType
                  withBuffer:buffer
              withBufferSize:bufferSize
-                   withGain:self.gain];
+                  withGain:self.gain
+            withLeftOffset:0.0f
+                 withScale:1.0f];
   
   if( !_hasBufferPlotData ){
     glBufferData( GL_ARRAY_BUFFER, sizeof(graph), graph, GL_STREAM_DRAW );
@@ -298,9 +302,8 @@
   // Setup the plot
   _rollingPlotGraphSize = [EZAudioPlotGL graphSizeForDrawingType:_drawingType
                                                   withBufferSize:_scrollHistoryLength];
-  
   // Fill the graph with data
-  EZAudioPlotGLPoint graph[_rollingPlotGraphSize];
+  EZAudioPlotGLPoint graph[_rollingPlotGraphSize + 4];
   
   // Update the scroll history datasource
   [EZAudio updateScrollHistory:&_scrollHistory
@@ -316,7 +319,9 @@
             forDrawingType:_drawingType
                 withBuffer:_scrollHistory
             withBufferSize:_scrollHistoryLength
-                  withGain:self.gain];
+                  withGain:self.gain
+            withLeftOffset:0.5f
+                 withScale:4.0f];
   
   // Update the drawing
   if( !_hasRollingPlotData ){
@@ -344,7 +349,9 @@
             forDrawingType:_drawingType
                 withBuffer:_scrollHistory
             withBufferSize:_scrollHistoryLength
-                  withGain:self.gain];
+                  withGain:self.gain
+            withLeftOffset:0.0f
+                 withScale:1.0f];
   
   // Update the drawing
   if( _hasRollingPlotData ){
