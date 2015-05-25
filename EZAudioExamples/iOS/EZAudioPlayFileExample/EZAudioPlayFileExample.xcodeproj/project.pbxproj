@@ -39,6 +39,7 @@
 		944D040B186038A60076EF7A /* EZAudioPlayFileExampleTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 944D040A186038A60076EF7A /* EZAudioPlayFileExampleTests.m */; };
 		944D043D1860398B0076EF7A /* PlayFileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 944D043C1860398A0076EF7A /* PlayFileViewController.m */; };
 		94BE6F86188F55CC00841D98 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 94BE6F85188F55CC00841D98 /* AVFoundation.framework */; };
+		FBAAA0731B13C3FE00290EF6 /* correct.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = FBAAA0721B13C3FE00290EF6 /* correct.mp3 */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -100,6 +101,7 @@
 		944D043B1860398A0076EF7A /* PlayFileViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlayFileViewController.h; sourceTree = "<group>"; };
 		944D043C1860398A0076EF7A /* PlayFileViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlayFileViewController.m; sourceTree = "<group>"; };
 		94BE6F85188F55CC00841D98 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
+		FBAAA0721B13C3FE00290EF6 /* correct.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = correct.mp3; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -213,6 +215,7 @@
 				944D043B1860398A0076EF7A /* PlayFileViewController.h */,
 				944D043C1860398A0076EF7A /* PlayFileViewController.m */,
 				9417A6D0186591CA00D9D37B /* simple-drum-beat.wav */,
+				FBAAA0721B13C3FE00290EF6 /* correct.mp3 */,
 				944D03F7186038A60076EF7A /* Images.xcassets */,
 				944D03E3186038A60076EF7A /* Supporting Files */,
 			);
@@ -327,6 +330,7 @@
 				9417A6D1186591CA00D9D37B /* simple-drum-beat.wav in Resources */,
 				9417A8341867DDF600D9D37B /* VERSION in Resources */,
 				944D03F3186038A60076EF7A /* Main_iPad.storyboard in Resources */,
+				FBAAA0731B13C3FE00290EF6 /* correct.mp3 in Resources */,
 				944D03F8186038A60076EF7A /* Images.xcassets in Resources */,
 				944D03F0186038A60076EF7A /* Main_iPhone.storyboard in Resources */,
 				944D03E7186038A60076EF7A /* InfoPlist.strings in Resources */,

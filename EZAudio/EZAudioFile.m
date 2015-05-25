@@ -207,7 +207,7 @@
   SInt64 currentFramePosition = _frameIndex;
   
   if( _waveformData != NULL ){
-    waveformDataCompletionBlock( _waveformData, _waveformTotalBuffers );
+    waveformDataCompletionBlock( _waveformData, _waveformTotalBuffers,_waveformFrameRate);
     return;
   }
   
@@ -216,7 +216,7 @@
   _waveformData         = (float*)malloc(sizeof(float)*_waveformTotalBuffers);
   
   if( self.totalFrames == 0 ){
-    waveformDataCompletionBlock( _waveformData, _waveformTotalBuffers );
+    waveformDataCompletionBlock( _waveformData, _waveformTotalBuffers,_waveformFrameRate);
     return;
   }
   
@@ -258,7 +258,7 @@
     
     // Once we're done send off the waveform data
     dispatch_async(dispatch_get_main_queue(), ^{
-      waveformDataCompletionBlock( _waveformData, _waveformTotalBuffers );
+      waveformDataCompletionBlock( _waveformData, _waveformTotalBuffers,_fileFormat.mSampleRate);
     });
 
   });

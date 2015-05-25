@@ -175,7 +175,8 @@
     float empty[_bufferPlotGraphSize];
     memset( empty, 0.0f, sizeof(float) );
     [self _updateBufferPlotBufferWithAudioReceived:empty
-                                    withBufferSize:_bufferPlotGraphSize];
+                                    withBufferSize:_bufferPlotGraphSize
+     frameRate:0];
   }
 }
 
@@ -217,7 +218,8 @@
 
 #pragma mark - Get Samples
 -(void)updateBuffer:(float *)buffer
-     withBufferSize:(UInt32)bufferSize {
+     withBufferSize:(UInt32)bufferSize
+          frameRate:(Float32)frameRate {
   
   // Make sure the update render loop is active
   if( self.paused ) self.paused = NO;
@@ -229,11 +231,13 @@
   switch(_plotType) {
     case EZPlotTypeBuffer:
       [self _updateBufferPlotBufferWithAudioReceived:buffer
-                                      withBufferSize:bufferSize];
+                                      withBufferSize:bufferSize
+                                           frameRate:frameRate];
       break;
     case EZPlotTypeRolling:
       [self _updateRollingPlotBufferWithAudioReceived:buffer
-                                       withBufferSize:bufferSize];
+                                       withBufferSize:bufferSize
+                                            frameRate:frameRate];
       break;
     default:
       break;
@@ -243,7 +247,8 @@
 
 #pragma mark - Buffer Updating By Type
 -(void)_updateBufferPlotBufferWithAudioReceived:(float*)buffer
-                                 withBufferSize:(UInt32)bufferSize {
+                                 withBufferSize:(UInt32)bufferSize
+                                      frameRate:(Float32)frameRate {
   
   glBindBuffer(GL_ARRAY_BUFFER, _bufferPlotVBO);
   
@@ -285,7 +290,8 @@
 }
 
 -(void)_updateRollingPlotBufferWithAudioReceived:(float*)buffer
-                                  withBufferSize:(UInt32)bufferSize {
+                                  withBufferSize:(UInt32)bufferSize
+                                       frameRate:(Float32)frameRate {
   
   glBindBuffer(GL_ARRAY_BUFFER, _rollingPlotVBO);
   
@@ -312,7 +318,13 @@
                     withBuffer:buffer
                 withBufferSize:bufferSize
           isResolutionChanging:&_changingHistorySize];
-  
+    
+    CGFloat scale = 1.0f;
+    if (self.timeInterval) {
+        scale = 40063/(self.timeInterval* _rollingPlotGraphSize);
+    //we want to display the sound in the time interval
+  //self.timeInterval
+    }
   // Fill in graph data
   [EZAudioPlotGL fillGraph:graph
              withGraphSize:_rollingPlotGraphSize
@@ -320,8 +332,8 @@
                 withBuffer:_scrollHistory
             withBufferSize:_scrollHistoryLength
                   withGain:self.gain
-            withLeftOffset:0.5f
-                 withScale:4.0f];
+            withLeftOffset:self.edgeInsetPercentageLeft
+                 withScale:scale];
   
   // Update the drawing
   if( !_hasRollingPlotData ){

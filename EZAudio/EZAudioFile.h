@@ -67,8 +67,9 @@
  A block used when returning back the waveform data. The waveform data itself will be an array of float values and the length indicates the total length of the float array.
  @param waveformData An array of float values representing the amplitude data from the audio waveform
  @param length       The length of the waveform data's float array
+  @param frameRate       The frame rate for the data
  */
-typedef void (^WaveformDataCompletionBlock)(float *waveformData, UInt32 length);
+typedef void (^WaveformDataCompletionBlock)(float *waveformData, UInt32 length, Float32 frameRate);
 
 #pragma mark - Properties
 /**

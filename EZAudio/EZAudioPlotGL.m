@@ -206,12 +206,42 @@
 // Mirror flag changed mac
 #endif
 
+#if TARGET_OS_IPHONE
+-(void)setEdgeInsetPercentageLeft:(CGFloat)edgeInsetPercentageLeft {
+    _edgeInsetPercentageLeft = edgeInsetPercentageLeft;
+    self.glViewController.edgeInsetPercentageLeft = edgeInsetPercentageLeft;
+}
+#elif TARGET_OS_MAC
+// Mirror flag changed mac
+#endif
+
+#if TARGET_OS_IPHONE
+-(void)setEdgeInsetPercentageRight:(CGFloat)edgeInsetPercentageRight {
+    _edgeInsetPercentageRight = edgeInsetPercentageRight;
+    self.glViewController.edgeInsetPercentageRight = edgeInsetPercentageRight;
+}
+#elif TARGET_OS_MAC
+// Mirror flag changed mac
+#endif
+
+#if TARGET_OS_IPHONE
+-(void)setTimeInterval:(NSTimeInterval)timeInterval {
+    _timeInterval = timeInterval;
+    self.glViewController.timeInterval = timeInterval;
+}
+#elif TARGET_OS_MAC
+// Mirror flag changed mac
+#endif
+
 #pragma mark - Get Samples
 -(void)updateBuffer:(float *)buffer
-     withBufferSize:(UInt32)bufferSize {
+     withBufferSize:(UInt32)bufferSize
+          frameRate:(Float32)frameRate
+{
 #if TARGET_OS_IPHONE
     [self.glViewController updateBuffer:buffer
-                         withBufferSize:bufferSize];
+                         withBufferSize:bufferSize
+                              frameRate:frameRate];
 #elif TARGET_OS_MAC
     
     
