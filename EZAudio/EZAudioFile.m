@@ -44,7 +44,6 @@
   
   // Waveform Data
   float  *_waveformData;
-  UInt32 _waveformFrameRate;
   UInt32 _waveformTotalBuffers;
   
 }
@@ -156,6 +155,8 @@
   
   // Set the default resolution for the waveform data
   _waveformResolution = kEZAudioFileWaveformDefaultResolution;
+    
+  _waveformFrameRate = [self recommendedDrawingFrameRate];
   
 }
 
@@ -230,16 +231,16 @@
                                                                    interleaved:YES];
       UInt32 bufferSize;
       BOOL eof;
-      
+        UInt32 bufferFrameRate = _waveformFrameRate;
       // Read in the specified number of frames
       [EZAudio checkResult:ExtAudioFileRead(_audioFile,
-                                            &_waveformFrameRate,
+                                            &bufferFrameRate,
                                             bufferList)
                  operation:"Failed to read audio data from audio file"];
       bufferSize = bufferList->mBuffers[0].mDataByteSize/sizeof(float);
       bufferSize = MAX(1, bufferSize);
-      eof = _waveformFrameRate == 0;
-      _frameIndex += _waveformFrameRate;
+      eof = bufferFrameRate == 0;
+      _frameIndex += bufferFrameRate;
       
       // Calculate RMS of each buffer
       float rms = [EZAudio RMS:bufferList->mBuffers[0].mData
@@ -258,7 +259,7 @@
     
     // Once we're done send off the waveform data
     dispatch_async(dispatch_get_main_queue(), ^{
-      waveformDataCompletionBlock( _waveformData, _waveformTotalBuffers,_fileFormat.mSampleRate);
+      waveformDataCompletionBlock( _waveformData, _waveformTotalBuffers,_waveformFrameRate);
     });
 
   });

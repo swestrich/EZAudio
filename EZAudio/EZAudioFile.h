@@ -204,6 +204,12 @@ typedef void (^WaveformDataCompletionBlock)(float *waveformData, UInt32 length, 
 -(SInt64)totalFrames;
 
 /**
+ Provides the number of frames per second.
+ @return The number of frames per second as a UInt32.
+ */
+@property(nonatomic,assign) UInt32 waveformFrameRate;
+
+/**
  Provides the NSURL for the audio file.
  @return An NSURL representing the path of the EZAudioFile instance.
  */

@@ -145,6 +145,8 @@
     self.audioPlot.plotType        = EZPlotTypeBuffer;
     self.audioPlot.shouldFill      = YES;
     self.audioPlot.shouldMirror    = YES;
+    self.audioPlot.edgeInsetPercentageLeft = 0.1;
+    self.audioPlot.edgeInsetPercentageRight = 0.1;
     self.audioPlot.timeInterval    = self.audioFile.totalDuration;
     [self.audioFile getWaveformDataWithCompletionBlock:^(float *waveformData, UInt32 length , Float32 frameRate) {
         [self.audioPlot updateBuffer:waveformData withBufferSize:length frameRate:frameRate];
@@ -165,7 +167,7 @@ withNumberOfChannels:(UInt32)numberOfChannels {
                 self.audioPlot.shouldFill   = NO;
                 self.audioPlot.shouldMirror = NO;
             }
-            [self.audioPlot updateBuffer:buffer[0] withBufferSize:bufferSize frameRate:audioFile.totalFrames/audioFile.totalDuration];
+            [self.audioPlot updateBuffer:buffer[0] withBufferSize:bufferSize frameRate:audioFile.waveformFrameRate];
         }
     });
 }

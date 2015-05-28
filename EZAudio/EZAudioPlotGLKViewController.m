@@ -274,7 +274,7 @@
                  withBuffer:buffer
              withBufferSize:bufferSize
                   withGain:self.gain
-            withLeftOffset:0.0f
+            withLeftOffset:self.edgeInsetPercentageLeft
                  withScale:1.0f];
   
   if( !_hasBufferPlotData ){
@@ -321,7 +321,7 @@
     
     CGFloat scale = 1.0f;
     if (self.timeInterval) {
-        scale = 40063/(self.timeInterval* _rollingPlotGraphSize);
+        scale =  _rollingPlotGraphSize*(1-self.edgeInsetPercentageLeft - self.edgeInsetPercentageRight)/(frameRate*self.timeInterval)/2;
     //we want to display the sound in the time interval
   //self.timeInterval
     }

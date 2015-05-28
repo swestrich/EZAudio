@@ -40,7 +40,7 @@
 #pragma mark - Get Samples
 -(void)updateBuffer:(float *)buffer
      withBufferSize:(UInt32)bufferSize
-frameRate:(UInt32)frameRate
+frameRate:(Float32)frameRate
 {
   // Override in subclass
 }
